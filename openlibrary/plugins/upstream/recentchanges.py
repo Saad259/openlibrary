@@ -200,8 +200,8 @@ class history(delegate.mode):
         page = web.ctx.site.get(path)
         if not page:
             raise web.seeother(path)
-        i = web.input(page=0)
-        offset = 20 * safeint(i.page)
+        i = web.input(page=1)
+        offset = 20 * safeint((i.page) - 1)
         limit = 20
         history = get_changes({"key": path, "limit": limit, "offset": offset})
         return render.history(page, history)
